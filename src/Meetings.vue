@@ -3,12 +3,7 @@
     <div>
       <div v-if="people.length > 0">
         <h1>Participants list</h1>
-        <ol>
-          <li v-for="person in people">
-            {{ person.firstname }}
-            {{ person.lastname }}
-          </li>
-        </ol>
+        <participants-list :list="people"></participants-list>
       </div>
     </div>
 
@@ -17,25 +12,25 @@
       <label>Firstname</label>
       <input type="text" v-model="newPerson.firstname">
       <label>Lastname</label>
-      <input type="text" v-model="lastname">
+      <input type="text" v-model="newPerson.lastname">
       <button>Add new participant</button>
     </form>
   </div>
 </template>
 
 <script>
+  import ParticipantsList from "./ParticipantsList.vue";
+
   export default {
+    components: {ParticipantsList},
     data() {
       return {
-        newPerson: {firstname: '', lastname: ''},
+        newPerson: {},
         people: []
       };
     },
     methods: {
       addNewParticipant() {
-        if (!this.newPerson.lastname) {
-          return;
-        }
         this.people.push(this.newPerson);
         this.newPerson = {};
       }
