@@ -1,11 +1,17 @@
 <template>
   <div>
     <form @submit.prevent="add()">
-      <label>Firstname</label>
-      <input type="text" v-model="newParticipant.firstname">
-      <label>Lastname</label>
-      <input type="text" v-model="newParticipant.lastname">
-      <button>Add new participant</button>
+      <div class="form-group">
+        <label>Firstname</label>
+        <input type="text" v-model="newParticipant.firstname" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Lastname</label>
+        <input type="text" v-model="newParticipant.lastname" class="form-control">
+      </div>
+      <button class="btn btn-primary"
+              :disabled="!newParticipant.firstname || !newParticipant.lastname">Add new participant
+      </button>
     </form>
   </div>
 </template>
