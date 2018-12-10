@@ -6,33 +6,25 @@
         <participants-list :list="people"></participants-list>
       </div>
     </div>
-
     <h3>New participant</h3>
-    <form @submit.prevent="addNewParticipant()">
-      <label>Firstname</label>
-      <input type="text" v-model="newPerson.firstname">
-      <label>Lastname</label>
-      <input type="text" v-model="newPerson.lastname">
-      <button>Add new participant</button>
-    </form>
+    <new-participant-form @added="addNewParticipant($event)"></new-participant-form>
   </div>
 </template>
 
 <script>
   import ParticipantsList from "./ParticipantsList.vue";
+  import NewParticipantForm from "./NewParticipantForm.vue";
 
   export default {
-    components: {ParticipantsList},
+    components: {ParticipantsList, NewParticipantForm},
     data() {
       return {
-        newPerson: {},
         people: []
       };
     },
     methods: {
-      addNewParticipant() {
-        this.people.push(this.newPerson);
-        this.newPerson = {};
+      addNewParticipant(participant) {
+        this.people.push(participant);
       }
     }
   };
