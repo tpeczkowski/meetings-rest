@@ -39,6 +39,7 @@
     methods: {
       addNewParticipant(participant) {
         this.people.push(participant);
+        this.$http.post('participants', participant);
       }
       
     },
@@ -46,6 +47,7 @@
     this.$http.get('participants').then(response => {
     this.people = response.body;
   })
+    
     }
   };
 </script>
